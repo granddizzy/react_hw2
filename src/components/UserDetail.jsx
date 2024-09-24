@@ -18,8 +18,7 @@ const UserDetail = () => {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        backgroundColor: '#121212',
+        minHeight: '85vh',
         color: '#fff',
         display: 'flex',
         flexDirection: 'column',
@@ -47,7 +46,7 @@ const UserDetail = () => {
           elevation={3}
           sx={{
             padding: '20px',
-            backgroundColor: '#1e1e1e',
+            backgroundColor: 'rgb(85, 85, 85)',
             color: '#fff',
             textAlign: 'center',
           }}

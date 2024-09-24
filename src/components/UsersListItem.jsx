@@ -9,7 +9,7 @@ const UsersListItem = ({user}) => {
         key={user.id}
         elevation={3}
         sx={{
-          marginBottom: '10px', backgroundColor: '#1e1e1e', color: '#fff',
+          marginBottom: '10px', backgroundColor: 'rgb(85, 85, 85)', color: '#fff',
         }}
       >
         <ListItem>

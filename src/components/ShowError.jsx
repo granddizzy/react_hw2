@@ -6,7 +6,6 @@ const ShowError = ({error}) => {
     <Box
       sx={{
         minHeight: '100vh',
-        backgroundColor: '#121212',
         color: '#fff',
         display: 'flex',
         alignItems: 'center',

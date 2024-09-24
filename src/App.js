@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import UsersList from "./components/UsersList";
-import {Route, BrowserRouter, Routes} from "react-router-dom";
+import {Route, BrowserRouter, Routes, NavLink} from "react-router-dom";
 import UserProfile from "./components/UserDetail";
 import {GlobalStyles} from "@mui/material";
 import './css/styles.css';
+import Main from "./components/Main";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,11 +15,18 @@ function App() {
   //   dispatch({type: 'FETCH_USERS_REQUEST'});
   // }, []);
 
+  const getLinkStyle = ({isActive}) => ({
+    color: (isActive ? '#FFD700' : '#ccc'),
+    '&:hover': {
+      color: '#FFD700',
+    },
+  });
+
   const globalThemeStyles = {
     body: {
-      backgroundColor: '#fff',
-      color: '#000',
-    }
+      backgroundColor: 'rgb(51, 51, 51)',
+      color: '#fff',
+    },
   }
 
   const baseUrl = '';
@@ -27,9 +35,18 @@ function App() {
     <>
       <GlobalStyles styles={globalThemeStyles}/>
       <BrowserRouter basename={baseUrl}>
+        <nav className="nav">
+          <NavLink to="/" className="nav-link" style={getLinkStyle}>
+            Главная страница
+          </NavLink> |
+          <NavLink to="/users" className="nav-link" style={getLinkStyle}>
+            Пользователи
+          </NavLink> |
+        </nav>
         <Routes>
           <Route path="/users" element={<UsersList/>}/>
           <Route path="/user/:userId" element={<UserProfile/>}/>
+          <Route path="/" element={<Main baseUrl={baseUrl}/>}/>
         </Routes>
       </BrowserRouter>
     </>

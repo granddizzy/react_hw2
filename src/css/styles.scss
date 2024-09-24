@@ -1,1 +1,45 @@
 @import "reset";
+
+.main-logo {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  height: 85vh;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #007BFF;
+  }
+}
+
+.nav-link-active {
+  font-weight: bold;
+  color: #007BFF;
+}

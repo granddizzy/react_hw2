@@ -16,8 +16,7 @@ const UsersList = () => {
 
   return (<Box
     sx={{
-      minHeight: '100vh',
-      backgroundColor: '#121212',
+      minHeight: '85vh',
       color: '#fff',
       display: 'flex',
       flexDirection: 'column',
