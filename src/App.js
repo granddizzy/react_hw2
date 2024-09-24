@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import UsersList from "./components/UsersList";
 import {Route, BrowserRouter, Routes} from "react-router-dom";
-import UserProfile from "./components/userProfile";
+import UserProfile from "./components/UserDetail";
 
 function App() {
   const dispatch = useDispatch();

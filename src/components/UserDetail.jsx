@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchUser} from '../redux/userSlice';
-import {Box, Button, CircularProgress, Link, Paper, Typography} from '@mui/material';
+import {Box, Button, Paper, Typography} from '@mui/material';
 import {NavLink, useParams} from "react-router-dom";
+import ShowError from "./ShowError";
+import ShowCircularProgress from "./ShowCircularProgress";
 
 const UserDetail = () => {
   const {userId} = useParams();
@@ -13,34 +15,8 @@ const UserDetail = () => {
     dispatch(fetchUser(userId));
   }, [dispatch, userId]);
 
-  if (loading) return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        backgroundColor: '#121212',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <CircularProgress color="inherit"/>
-    </Box>
-  );
-  if (error) return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        backgroundColor: '#121212',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Typography color="error">Error: {error}</Typography>
-    </Box>
-  );
+  if (loading) return (<ShowCircularProgress/>);
+  if (error) return (<ShowError error={error}/>);
 
   return (
     <Box

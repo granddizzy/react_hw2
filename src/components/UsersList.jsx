@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchUsers} from '../redux/usersSlice';
-import {List, ListItem, ListItemText, Typography, CircularProgress, Box, Paper, Link} from '@mui/material';
-import {NavLink} from "react-router-dom";
+import {List, Typography, Box} from '@mui/material';
+import ShowError from "./ShowError";
+import UsersListItem from "./UsersListItem";
+import ShowCircularProgress from "./ShowCircularProgress";
 
 const UsersList = () => {
   const dispatch = useDispatch();
@@ -27,47 +29,10 @@ const UsersList = () => {
     <Typography variant="h4" gutterBottom>
       Пользователи
     </Typography>
-    {loading && <Box
-      sx={{
-        minHeight: '100vh',
-        backgroundColor: '#121212',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <CircularProgress color="inherit"/>
-    </Box>}
-    {error && <Box
-      sx={{
-        minHeight: '100vh',
-        backgroundColor: '#121212',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <Typography color="error">Error: {error}</Typography>
-    </Box>}
+    {loading && <ShowCircularProgress/>}
+    {error && <ShowError error={error}/>}
     <List sx={{width: '100%', maxWidth: 600}}>
-      {users.map((user) => (
-        <NavLink to={`/user/${user.id}`} key={user.id} style={{textDecoration: 'none', color: 'inherit'}}>
-          <Paper
-            key={user.id}
-            elevation={3}
-            sx={{
-              marginBottom: '10px', backgroundColor: '#1e1e1e', color: '#fff',
-            }}
-          >
-            <ListItem>
-              <ListItemText primary={user.name}
-                            primaryTypographyProps={{color: '#fff'}}
-                            />
-            </ListItem>
-          </Paper>
-        </NavLink>))}
+      {users.map((user) => (<UsersListItem user={user}/>))}
     </List>
   </Box>);
 };
