@@ -22,7 +22,7 @@ const UsersList = () => {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       padding: '20px',
     }}
   >

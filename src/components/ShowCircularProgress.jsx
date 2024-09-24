@@ -5,7 +5,7 @@ const ShowCircularProgress = () => {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
+        // minHeight: '100vh',
         backgroundColor: '#121212',
         color: '#fff',
         display: 'flex',

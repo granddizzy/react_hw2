@@ -15,9 +15,6 @@ const UserDetail = () => {
     dispatch(fetchUser(userId));
   }, [dispatch, userId]);
 
-  if (loading) return (<ShowCircularProgress/>);
-  if (error) return (<ShowError error={error}/>);
-
   return (
     <Box
       sx={{
@@ -27,8 +24,8 @@ const UserDetail = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
+        justifyContent: 'flex-start',
+        paddingTop: '20px',
       }}
     >
       <Typography variant="h4" gutterBottom>
@@ -43,7 +40,9 @@ const UserDetail = () => {
           Назад
         </Button>
       </NavLink>
-      {user ? (
+      {loading && <ShowCircularProgress/>}
+      {error && <ShowError error={error}/>}
+      {!loading && !error && user ? (
         <Paper
           elevation={3}
           sx={{
@@ -57,7 +56,7 @@ const UserDetail = () => {
           <Typography sx={{color: 'gold'}}>{user.email}</Typography>
         </Paper>
       ) : (
-        <Typography>Пользователь не найден.</Typography>
+        !loading && <Typography>Пользователь не найден.</Typography>
       )}
     </Box>
   );
