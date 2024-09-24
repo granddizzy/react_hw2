@@ -6,14 +6,16 @@ import UserProfile from "./components/UserDetail";
 import {GlobalStyles} from "@mui/material";
 import './css/styles.css';
 import Main from "./components/Main";
+import {fetchUsers} from './redux/usersSlice1';
 
 function App() {
   const dispatch = useDispatch();
   const {users, loading, error} = useSelector((state) => state.users);
 
-  // useEffect(() => {
-  //   dispatch({type: 'FETCH_USERS_REQUEST'});
-  // }, []);
+  // диспатчим асинхронный экшн при загрузке компонента
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
 
   const getLinkStyle = ({isActive}) => ({
     color: (isActive ? '#FFD700' : '#ccc'),

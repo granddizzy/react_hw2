@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchUser} from '../redux/userSlice';
 import {Box, Button, Paper, Typography} from '@mui/material';
-import {NavLink, useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 import ShowError from "./ShowError";
 import ShowCircularProgress from "./ShowCircularProgress";
 
@@ -10,10 +10,15 @@ const UserDetail = () => {
   const {userId} = useParams();
   const dispatch = useDispatch();
   const {user, loading, error} = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchUser(userId));
   }, [dispatch, userId]);
+
+  const handleGoBack = () => {
+    navigate(-1); // Вернуться на предыдущую страницу в истории
+  };
 
   return (
     <Box
@@ -30,15 +35,16 @@ const UserDetail = () => {
       <Typography variant="h4" gutterBottom>
         Данные пользователя
       </Typography>
-      <NavLink to="/users" style={{textDecoration: 'none'}}>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{marginBottom: '20px'}}
-        >
-          Назад
-        </Button>
-      </NavLink>
+      {/*<NavLink to="/users" style={{textDecoration: 'none'}}>*/}
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{marginBottom: '20px'}}
+        onClick={handleGoBack}
+      >
+        Назад
+      </Button>
+      {/*</NavLink>*/}
       {loading && <ShowCircularProgress/>}
       {error && <ShowError error={error}/>}
       {!loading && !error && user ? (
