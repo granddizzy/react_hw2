@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchUsers} from '../redux/usersSlice';
+import {fetchUsers} from '../redux/usersSlice1';
 import {List, Typography, Box} from '@mui/material';
 import ShowError from "./ShowError";
 import UsersListItem from "./UsersListItem";
@@ -11,7 +11,7 @@ const UsersList = () => {
   const {users, loading, error} = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchUsers('https://jsonplaceholder.typicode.com/users'));
   }, []);
 
   return (<Box

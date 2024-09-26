@@ -2,10 +2,13 @@ import {createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Обычный thunk для асинхронного запроса пользователей
-export const fetchUsers = () => async (dispatch) => {
+export const fetchUsers = (url) => async (dispatch) => {
   dispatch(fetchUsersRequest());
   try {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+    const response = await axios.get(url);
+    if (response.status !== 200) {
+      throw new Error(`Ошибка: ${response.statusText}`)
+    }
     dispatch(fetchUsersSuccess(response.data));
   } catch (error) {
     dispatch(fetchUsersFailure(error.message));

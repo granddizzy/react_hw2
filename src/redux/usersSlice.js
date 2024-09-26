@@ -3,9 +3,18 @@ import axios from 'axios';
 
 export const fetchUsers = createAsyncThunk(
   'users/fetchUsers',
-  async () => {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-    return response.data;
+  async (url, thunkAPI) => {
+    try {
+      const response = await axios.get(url);
+      if (response.status !== 200) {
+        throw new Error(`Ошибка: ${response.statusText}`)
+      }
+      return response.data;
+    } catch (error) {
+
+      // Вызываем rejectWithValue для передачи ошибки
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 

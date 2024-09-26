@@ -1,22 +1,12 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React from 'react';
 import UsersList from "./components/UsersList";
 import {Route, BrowserRouter, Routes, NavLink} from "react-router-dom";
 import UserProfile from "./components/UserDetail";
 import {GlobalStyles} from "@mui/material";
 import './css/styles.css';
 import Main from "./components/Main";
-import {fetchUsers} from './redux/usersSlice1';
 
 function App() {
-  const dispatch = useDispatch();
-  const {users, loading, error} = useSelector((state) => state.users);
-
-  // диспатчим асинхронный экшн при загрузке компонента
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, []);
-
   const getLinkStyle = ({isActive}) => ({
     color: (isActive ? '#FFD700' : '#ccc'),
     '&:hover': {
