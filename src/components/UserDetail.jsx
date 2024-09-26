@@ -13,7 +13,7 @@ const UserDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchUser(userId));
+    dispatch(fetchUser(`https://jsonplaceholder.typicode.com/users/${userId}`));
   }, [dispatch, userId]);
 
   const handleGoBack = () => {
